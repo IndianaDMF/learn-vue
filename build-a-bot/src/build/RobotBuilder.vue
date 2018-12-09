@@ -57,8 +57,8 @@
 </template>
 
 <script>
-import availableParts from "../data/parts";
-import createdHookMixin from "./created-hook-mixin";
+import availableParts from '../data/parts';
+import createdHookMixin from './created-hook-mixin';
 
 function getPreviousValidIndex(index, length) {
   const decrementIndex = index - 1;
@@ -71,8 +71,7 @@ function getNextValidIndex(index, length) {
 }
 
 export default {
-  name: "RobotBuilder",
-  
+  name: 'RobotBuilder',
   data() {
     return {
       availableParts,
@@ -81,17 +80,17 @@ export default {
       selectedRightArmIndex: 0,
       selectedLeftArmIndex: 0,
       selectedTorsoIndex: 0,
-      selectedBaseIndex: 0
+      selectedBaseIndex: 0,
     };
   },
-  mixins:[createdHookMixin],
+  mixins: [createdHookMixin],
   computed: {
     saleBorderClass() {
-      return this.selectedRobot.head.onSale ? "sale-border" : "";
+      return this.selectedRobot.head.onSale ? 'sale-border' : '';
     },
     headBorderStyle() {
       return {
-        border: this.selectedRobot.onSale ? "3px solid red" : "3px solid #aaa"
+        border: this.selectedRobot.onSale ? '3px solid red' : '3px solid #aaa',
       };
     },
     selectedRobot() {
@@ -100,82 +99,77 @@ export default {
         leftArm: availableParts.arms[this.selectedLeftArmIndex],
         rightArm: availableParts.arms[this.selectedRightArmIndex],
         torso: availableParts.torsos[this.selectedTorsoIndex],
-        base: availableParts.bases[this.selectedBaseIndex]
+        base: availableParts.bases[this.selectedBaseIndex],
       };
-    }
+    },
   },
   methods: {
     addToCart() {
       const robot = this.selectedRobot;
-      const cost =
-        robot.head.cost +
-        robot.leftArm.cost +
-        robot.rightArm.cost +
-        robot.torso.cost +
-        robot.base.cost;
+      const cost = robot.head.cost + robot.leftArm.cost + robot.rightArm.cost + robot.torso.cost + robot.base.cost;
       this.cart.push(Object.assign({}, robot, { cost }));
     },
     selectNextHead() {
       this.selectedHeadIndex = getNextValidIndex(
         this.selectedHeadIndex,
-        availableParts.heads.length
+        availableParts.heads.length,
       );
     },
     selectPreviousHead() {
       this.selectedHeadIndex = getPreviousValidIndex(
         this.selectedHeadIndex,
-        availableParts.heads.length
+        availableParts.heads.length,
       );
     },
     selectNextLeftArm() {
       this.selectedLeftArmIndex = getNextValidIndex(
         this.selectedLeftArmIndex,
-        availableParts.arms.length
+        availableParts.arms.length,
       );
     },
     selectPreviousLeftArm() {
       this.selectedLeftArmIndex = getPreviousValidIndex(
         this.selectedLeftArmIndex,
-        availableParts.arms.length
+        availableParts.arms.length,
       );
     },
     selectNextTorso() {
       this.selectedTorsoIndex = getNextValidIndex(
         this.selectedTorsoIndex,
-        availableParts.torsos.length
+        availableParts.torsos.length,
       );
     },
     selectPreviousTorso() {
       this.selectedTorsoIndex = getPreviousValidIndex(
         this.selectedTorsoIndex,
-        availableParts.torsos.length
+        availableParts.torsos.length,
       );
     },
     selectNextRightArm() {
       this.selectedRightArmIndex = getNextValidIndex(
         this.selectedRightArmIndex,
-        availableParts.arms.length
+        availableParts.arms.length,
       );
     },
     selectPreviousRightArm() {
       this.selectedRightArmIndex = getPreviousValidIndex(
         this.selectedRightArmIndex,
-        availableParts.arms.length
+        availableParts.arms.length,
       );
     },
     selectNextBase() {
       this.selectedBaseIndex = getNextValidIndex(
         this.selectedBaseIndex,
-        availableParts.bases.length
+        availableParts.bases.length,
       );
     },
     selectPreviousBase() {
       this.selectedBaseIndex = getPreviousValidIndex(
         this.selectedBaseIndex,
-        availableParts.bases.length
+        availableParts.bases.length,
       );
-    }
-  }
+    },
+  },
 };
 </script>
 
