@@ -1,5 +1,5 @@
 <template>
-  <div class="part">
+  <div class="part" :class="position">
     <img :src="selectedPart.src" title="arm"/>
     <button @click="selectPreviousPart()" class="prev-selector"></button>
     <button @click="selectNextPart()" class="next-selector"></button>
@@ -8,9 +8,6 @@
 </template>
 
 <script>
-import availableParts from '../data/parts';
-
-const parts = availableParts.heads;
 
 function getPreviousValidIndex(index, length) {
   const deprecatedIndex = index - 1;
@@ -23,28 +20,51 @@ function getNextValidIndex(index, length) {
 }
 
 export default {
+  props: {
+    parts: {
+      type: Array,
+      required: true,
+      validator(value) {
+        return ['left', 'right', 'top', 'bottom', 'center'].includes(value);
+      },
+    },
+    position: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return { selectedPartIndex: 0 };
   },
   computed: {
     selectedPart() {
-      return parts[this.selectedPartIndex];
+      return this.parts[this.selectedPartIndex];
     },
   },
+  created() {
+    // event is emitted on resovle. this is a vue.js lifecycle event
+    this.emitSelectedPart();
+  },
+  updated() {
+    // event is emitted on update to a bound prop. this is a vue.js lifecycle event
+    this.emitSelectedPart();
+  },
   methods: {
+    emitSelectedPart() {
+      this.$emit('partSelected', this.selectedPart);
+    },
     selectNextPart() {
       this.selectedPartIndex = getNextValidIndex(
         this.selectedPartIndex,
-        parts.length,
+        this.parts.length,
       );
     },
     selectPreviousPart() {
       this.selectedPartIndex = getPreviousValidIndex(
         this.selectedPartIndex,
-        parts.length,
+        this.parts.length,
       );
     },
-
   },
 };
 
