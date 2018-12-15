@@ -5,6 +5,7 @@ import axios from 'axios';
 Vue.use(Vuex);
 
 export default {
+  namespaced: true,
   state: {
     cart: [],
     parts: null,

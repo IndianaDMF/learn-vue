@@ -17,5 +17,8 @@ export default {
         .then(result => commit('updateCurrentUser', result.data))
         .catch(console.error);
     },
+    addRobotToCart() {
+      console.log('users add robot to cart');
+    },
   },
 };
