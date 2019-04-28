@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Welcome msg="This is the welcome page"/>
+    <Welcome msg=""/>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="header">
-      <h4>Logo</h4>
+      <img class="img" alt="logo" src="./assets/clippy.png">
     </div>
     <div id="nav" class="menu">
       <router-link to="/">Welcome</router-link> |
@@ -26,11 +26,18 @@ export default {
   components: {
     SideBar,
   },
+  created() {
+    // console.log('route', this.$router.params.baseaccount);
+  },
 };
 </script>
 
 
 <style>
+.img {
+  width: 50px;
+  height: auto;
+}
 .content {
   width: auto;
   overflow: hidden;
