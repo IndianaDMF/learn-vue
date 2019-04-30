@@ -9,9 +9,7 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'welcome',
-      component: Welcome,
+      path: '/:prospectId', name: 'welcome', component: Welcome, props: true,
     },
     {
       path: '/intro',

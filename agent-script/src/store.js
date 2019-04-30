@@ -1,11 +1,15 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import settings from './settings';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   namespaces: true,
+  props: {
+    prospectId: null,
+  },
   state: {
     prospect: null,
   },
@@ -20,9 +24,10 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    getProspect({ commit }) {
-      const url = '';
-      const auth = '';
+    getProspect({ commit }, prospectId) {
+      const url = `${settings.prospectUrl}${prospectId}`;
+      console.log(url);
+      const auth = settings.hash;
       const config = {
         mode: 'cors',
         headers: {
@@ -34,8 +39,8 @@ export default new Vuex.Store({
         .catch(console.error);
     },
     addProspect({ commit }, prospect) {
-      const postUrl = '';
-      const auth = '';
+      const postUrl = settings.prospectUrl;
+      const auth = settings.hash;
       const config = {
         mode: 'cors',
         headers: {

@@ -26,9 +26,6 @@ export default {
   components: {
     SideBar,
   },
-  created() {
-    // console.log('route', this.$router.params.baseaccount);
-  },
 };
 </script>
 
